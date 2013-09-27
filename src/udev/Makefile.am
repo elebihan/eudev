@@ -142,8 +142,17 @@ keyboard-keys-to-name.h: keyboard-keys.txt Makefile
 	$(AM_V_GEN)$(AWK) 'BEGIN{ print "const char* const key_names[KEY_CNT] = { "} { print "[" $$1 "] = \"" $$1 "\"," } END{print "};"}' < $< > $@
 
 
+if DISTRIBUTE_GENERATED_CODE
+EXTRA_DIST += \
+	$(nodist_libudev_core_la_SOURCES)
+
+BUILT_SOURCES =
+
+else
 BUILT_SOURCES = \
 	$(nodist_libudev_core_la_SOURCES)
+
+endif
 
 CLEANFILES += \
 	keyboard-keys-from-name.gperf \

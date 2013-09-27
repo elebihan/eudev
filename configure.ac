@@ -311,6 +311,13 @@ fi
 AM_CONDITIONAL([ENABLE_RULE_GENERATOR], [test "x$enable_rule_generator" = xyes])
 
 # ------------------------------------------------------------------------------
+AC_ARG_WITH([generated-code-distribution],
+	AS_HELP_STRING([--with-generated-code-distribution], [allow generated code to be distributed instead of cleaned]),
+	[],[with_generated_code_distribution=no])
+
+AM_CONDITIONAL([DISTRIBUTE_GENERATED_CODE], [test "x$with_generated_code_distribution" = xyes])
+# ------------------------------------------------------------------------------
+
 
 AC_CONFIG_FILES([Makefile
                  docs/Makefile
